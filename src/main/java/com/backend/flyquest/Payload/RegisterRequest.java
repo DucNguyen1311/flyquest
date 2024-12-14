@@ -10,10 +10,10 @@ public class RegisterRequest {
     private String role;
 
     public RegisterRequest(){};
-    public RegisterRequest(String email, String name, String password) {
+    public RegisterRequest(String email, String name, String password, String role) {
         this.email = email;
         this.password = password;
         this.accountName = name;
-        this.role = "USER";
+        this.role = role;
     }
 }
