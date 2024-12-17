@@ -26,6 +26,6 @@ public class FlightCustomRepositoryImp implements FlightCustomRepository {
                 "\tINNER JOIN airport ap2 ON f.destinationid = ap2.airportid\n" +
                 "\tWHERE f.departureid = :departure AND f.destinationid=:destination;";
         System.out.println(departure + " " + destination);
-        return em.createNativeQuery(sql).setParameter("departure", departure).setParameter("destination", destination).getResultList();
+        return em.createNativeQuery(sql, FlightDTO.class).setParameter("departure", departure).setParameter("destination", destination).getResultList();
     }
 }

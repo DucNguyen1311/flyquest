@@ -16,10 +16,10 @@ public class FlightDTO {
     private String flightnumber;
     private int availableeconomyseat;
     private int availablebusinessseat;
-    private int availablefirstclassseat;
+    private int availablefirstclassseat ;
     private int price;
-    private LocalDateTime departuretime;
-    private LocalDateTime expectedarrival;
+    private java.sql.Timestamp departuretime;
+    private java.sql.Timestamp expectedarrival;
     private String airlinename;
     private String airlinecode;
     private String departurelocation;
