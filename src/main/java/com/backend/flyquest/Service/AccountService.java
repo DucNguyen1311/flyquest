@@ -14,4 +14,5 @@ public interface AccountService {
      **/
     int saveAccountToDatabase(RegisterRequest registerRequest);
     Account findAccountByUsername(String username);
+    Account findAccountByEmail(String email);
 }

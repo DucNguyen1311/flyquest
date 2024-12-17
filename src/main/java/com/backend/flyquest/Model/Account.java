@@ -48,6 +48,6 @@ public class Account {
         this.accountName = registerRequest.getAccountName();
         this.accountPassword = new BCryptPasswordEncoder().encode(registerRequest.getPassword());
         this.accountEmail = registerRequest.getEmail();
-        this.accountRole = registerRequest.getRole();
+        this.accountRole = "USER";
     }
 }

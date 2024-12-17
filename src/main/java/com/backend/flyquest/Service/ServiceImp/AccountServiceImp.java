@@ -31,4 +31,9 @@ public class AccountServiceImp implements AccountService {
             return null;
         }
     }
+
+    @Override
+    public Account findAccountByEmail(String email) {
+        return accountRepository.findAccountByAccountEmail(email);
+    }
 }

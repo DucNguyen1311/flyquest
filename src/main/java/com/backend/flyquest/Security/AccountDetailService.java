@@ -9,6 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Service
 public class AccountDetailService implements UserDetailsService {
     @Autowired
@@ -16,10 +19,17 @@ public class AccountDetailService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var u = accountRepository.findAccountByAccountName(username);
+    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+        Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+        Matcher mat = pattern.matcher(usernameOrEmail);
+        Account u = null;
+        if (mat.matches()) {
+            u = accountRepository.findAccountByAccountEmail(usernameOrEmail);
+        } else {
+            u = accountRepository.findAccountByAccountName(usernameOrEmail);
+        }
         if (u == null) {
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException(usernameOrEmail);
         } else {
             return new AccountDetails(u);
         }
