@@ -8,6 +8,7 @@ import java.util.List;
 
 @Service
 public interface FlightService {
+    public List<FlightDTO> getAllFlights();
     public void saveFlightToDatabase(Flight flight);
     public List<FlightDTO> getAllFlightsFromDepartureToDestination(String departure, String destination);
 }

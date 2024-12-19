@@ -40,12 +40,21 @@ public class FlightController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("/getflight")
-    public ResponseEntity<?> getFlight(@RequestBody GetFlightRequest flightRequest) {
+    @GetMapping("/getflight/{destination}/{arrival}")
+    public ResponseEntity<?> getFlight(@PathVariable String destination, @PathVariable String arrival) {
         try {
-            List<FlightDTO> flightDTOS= flightService.getAllFlightsFromDepartureToDestination(flightRequest.getDepartureid(), flightRequest.getDestinationid());
+            List<FlightDTO> flightDTOS= flightService.getAllFlightsFromDepartureToDestination(destination, arrival);
 
             return ResponseEntity.ok().body(flightDTOS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @GetMapping("/getallflights")
+    public ResponseEntity<?> getAllFlights() {
+        try {
+            return ResponseEntity.ok().body(flightService.getAllFlights());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
