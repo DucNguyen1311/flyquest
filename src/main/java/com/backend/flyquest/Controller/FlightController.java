@@ -72,4 +72,14 @@ public class FlightController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/getflightbyflightid/{Flightid}")
+    public ResponseEntity<?> getFlightByFlightID(@PathVariable String Flightid) {
+        try {
+            return ResponseEntity.ok().body(flightService.GetFlightByFlightId(Flightid));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

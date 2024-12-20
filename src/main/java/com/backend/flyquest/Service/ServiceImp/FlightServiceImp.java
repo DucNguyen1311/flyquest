@@ -20,6 +20,11 @@ public class FlightServiceImp implements FlightService {
     private FlightCustomRepository flightCustomRepository;
 
     @Override
+    public Flight GetFlightByFlightId(String flightId) {
+        return flightRepository.getFlightByFlightId(flightId);
+    }
+
+    @Override
     public void EditDepartureTimeAndArrivalTime(Timestamp departureTime, Timestamp arrivalTime, String flightID) {
         flightCustomRepository.EditDepartureTimeAndExpectedArrival(departureTime, arrivalTime, flightID);
     }
