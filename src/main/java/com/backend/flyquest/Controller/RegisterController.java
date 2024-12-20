@@ -20,12 +20,8 @@ public class RegisterController {
     @PostMapping("/register")
     public ResponseEntity<?> registerNewAccount(@RequestBody RegisterRequest registerRequest) {
         try {
-            int flag = accountService.saveAccountToDatabase(registerRequest);
-            if (flag != 0) {
-                return ResponseEntity.badRequest().body(flag);
-            } else {
-                return ResponseEntity.ok(registerRequest);
-            }
+            Account account = accountService.saveAccountToDatabase(registerRequest);
+            return ResponseEntity.ok(account);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("Account Creation Failure for some reason...");

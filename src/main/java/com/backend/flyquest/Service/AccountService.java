@@ -12,7 +12,7 @@ public interface AccountService {
      if the email is taken, this function will return 2.
      if account saved succesfully, return 0;
      **/
-    int saveAccountToDatabase(RegisterRequest registerRequest);
+    Account saveAccountToDatabase(RegisterRequest registerRequest);
     Account findAccountByUsername(String username);
     Account findAccountByEmail(String email);
 }

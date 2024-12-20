@@ -14,12 +14,13 @@ public class AccountServiceImp implements AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public int saveAccountToDatabase(RegisterRequest registerRequest) {
+    public Account saveAccountToDatabase(RegisterRequest registerRequest) {
         if (accountRepository.findAccountByAccountEmail(registerRequest.getEmail()) != null) {
-            return 3;
+            throw new RuntimeException("email is already in use");
         } else {
-            accountRepository.save(new Account(registerRequest));
-            return 0;
+            Account account = new Account(registerRequest);
+            accountRepository.save(account);
+            return account;
         }
     }
 

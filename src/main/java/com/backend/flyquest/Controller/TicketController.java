@@ -13,6 +13,15 @@ import org.springframework.web.bind.annotation.*;
 public class TicketController {
     @Autowired
     private TicketService ticketService;
+    @PostMapping("/deletereservation")
+    public ResponseEntity<?> deleteReservation(@RequestBody String ticketID) {
+        try {
+            ticketService.deleteReservation(ticketID);
+            return  ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return  ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     @PostMapping("/makereservation")
     public ResponseEntity<?> makeReservation(@RequestBody TicketRequest ticketRequest) {
         try {

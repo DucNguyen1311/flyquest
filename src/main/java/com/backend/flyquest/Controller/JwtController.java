@@ -3,6 +3,7 @@ package com.backend.flyquest.Controller;
 import java.util.Objects;
 
 
+import com.backend.flyquest.DTO.RegisterAndLoginPayload;
 import com.backend.flyquest.Security.AccountDetailService;
 import com.backend.flyquest.Security.JwtRequest;
 import com.backend.flyquest.Security.JwtTokenUtil;
@@ -39,7 +40,7 @@ public class JwtController {
                     .loadUserByUsername(authenticationRequest.getUsername());
 
             final String token = jwtTokenUtil.generateToken(userDetails);
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(new RegisterAndLoginPayload(userDetails, token));
         } catch (Exception e) {
             return ResponseEntity.status(401).body(e.getMessage());
         }

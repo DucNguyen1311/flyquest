@@ -1,5 +1,6 @@
 package com.backend.flyquest.Service.ServiceImp;
 
+import com.backend.flyquest.Exception.DeletionTimeRunoutException;
 import com.backend.flyquest.Model.Ticket;
 import com.backend.flyquest.Repository.CustomRepository.TicketCustomRepository;
 import com.backend.flyquest.Repository.TicketRepository;
@@ -16,6 +17,11 @@ public class TicketServiceImp implements TicketService {
     private TicketCustomRepository ticketCustomRepository;
     @Autowired
     private TicketRepository ticketRepository;
+
+    @Override
+    public void deleteReservation(String ticketID) throws DeletionTimeRunoutException {
+        ticketCustomRepository.deleteReservationAndUpdateSeat(ticketID);
+    }
 
     @Override
     public void makeReservation(Ticket ticket) {
