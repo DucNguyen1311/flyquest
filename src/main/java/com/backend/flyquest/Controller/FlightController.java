@@ -1,6 +1,7 @@
 package com.backend.flyquest.Controller;
 
 import com.backend.flyquest.DTO.FlightDTO;
+import com.backend.flyquest.DTO.TimeDTO;
 import com.backend.flyquest.Model.Flight;
 import com.backend.flyquest.Payload.FlightRequest;
 import com.backend.flyquest.Payload.GetFlightRequest;
@@ -55,6 +56,17 @@ public class FlightController {
     public ResponseEntity<?> getAllFlights() {
         try {
             return ResponseEntity.ok().body(flightService.getAllFlights());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/changeflighttime")
+    public ResponseEntity<?> changeFlightTime(@RequestBody TimeDTO timeDTO) {
+        try {
+            flightService.EditDepartureTimeAndArrivalTime(timeDTO.getDestination(), timeDTO.getArrival(), timeDTO.getFlightID());
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
