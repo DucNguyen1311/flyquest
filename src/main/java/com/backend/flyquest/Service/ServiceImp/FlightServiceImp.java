@@ -8,6 +8,8 @@ import com.backend.flyquest.Service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -16,6 +18,11 @@ public class FlightServiceImp implements FlightService {
     private FlightRepository flightRepository;
     @Autowired
     private FlightCustomRepository flightCustomRepository;
+
+    @Override
+    public void EditDepartureTimeAndArrivalTime(Timestamp departureTime, Timestamp arrivalTime, String flightID) {
+        flightCustomRepository.EditDepartureTimeAndExpectedArrival(departureTime, arrivalTime, flightID);
+    }
 
     @Override
     public List<FlightDTO> getAllFlights() {

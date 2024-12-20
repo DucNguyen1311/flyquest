@@ -8,6 +8,7 @@ import java.util.List;
 
 @Service
 public interface FlightService {
+    public void EditDepartureTimeAndArrivalTime(java.sql.Timestamp departureTime, java.sql.Timestamp arrivalTime, String flightID);
     public List<FlightDTO> getAllFlights();
     public void saveFlightToDatabase(Flight flight);
     public List<FlightDTO> getAllFlightsFromDepartureToDestination(String departure, String destination);
