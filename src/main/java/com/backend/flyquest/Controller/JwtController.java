@@ -1,9 +1,7 @@
 package com.backend.flyquest.Controller;
 
-import java.util.Objects;
 
-
-import com.backend.flyquest.DTO.RegisterAndLoginPayload;
+import com.backend.flyquest.Payload.RegisterAndLoginPayload;
 import com.backend.flyquest.Security.AccountDetailService;
 import com.backend.flyquest.Security.JwtRequest;
 import com.backend.flyquest.Security.JwtTokenUtil;

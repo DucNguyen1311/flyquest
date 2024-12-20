@@ -1,4 +1,4 @@
-package com.backend.flyquest.DTO;
+package com.backend.flyquest.Payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
